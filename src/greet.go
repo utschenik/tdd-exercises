@@ -48,9 +48,17 @@ func (g *Greetings) getRightGreetings() string {
 }
 
 func (g *Greetings) getRightNames() string {
-	if len(g.Names) == 0 {
+	lengthOfNames := len(g.Names)
+
+	if lengthOfNames == 0 {
 		return g.Name
-	} else {
+	} else if lengthOfNames == 2 {
 		return strings.Join(g.Names, " and ")
+	} else {
+		lastNameInSlice := g.Names[len(g.Names)-1]
+		g.Names = g.Names[:len(g.Names)-1]
+
+		namesForGreeting := strings.Join(g.Names, ", ")
+		return namesForGreeting + " and " + lastNameInSlice
 	}
 }

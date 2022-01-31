@@ -55,3 +55,26 @@ func TestGreetGiveMultipleNamesReturnMultipleNames(t *testing.T) {
 		t.Errorf("Greeting was incorrect, got: %s, want %s", greetings, "Hello, Bill and John.")
 	}
 }
+
+func TestGreetGiveArbitaryNumberOfMultipleNames(t *testing.T) {
+	greeter := src.Greetings{Names: []string{"Amy", "John", "Nele"}}
+	greetings := greeter.Greet()
+
+	if greetings != "Hello, Amy, John and Nele." {
+		t.Errorf("Greeting was incorrect, got: %s, want %s", greetings, "Hello, Amy, John and Nele.")
+	}
+
+	greeter.Names = []string{"Bill", "John", "Murray"}
+	greetings = greeter.Greet()
+
+	if greetings != "Hello, Bill, John and Murray." {
+		t.Errorf("Greeting was incorrect, got: %s, want %s", greetings, "Hello, Bill, John and Murray.")
+	}
+
+	greeter.Names = []string{"Bill", "John", "Murray", "Pascal", "Joel"}
+	greetings = greeter.Greet()
+
+	if greetings != "Hello, Bill, John, Murray, Pascal and Joel." {
+		t.Errorf("Greeting was incorrect, got: %s, want %s", greetings, "Hello, Bill, John, Murray, Pascal and Joel.")
+	}
+}
