@@ -5,14 +5,6 @@ import (
 	"strings"
 )
 
-type Greeter interface {
-	Greet() string
-	checkForEmptyName()
-	checkNameForUppercase()
-	getRightGreetings() string
-	getRightNames() string
-}
-
 type Greetings struct {
 	Name            string
 	Names           []string
