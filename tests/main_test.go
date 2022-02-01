@@ -78,3 +78,26 @@ func TestGreetGiveArbitaryNumberOfMultipleNames(t *testing.T) {
 		t.Errorf("Greeting was incorrect, got: %s, want %s", greetings, "Hello, Bill, John, Murray, Pascal and Joel.")
 	}
 }
+
+func TestGreetGiveMultipleNamesMixedUpperAndLowerCase(t *testing.T) {
+	greeter := src.Greetings{Names: []string{"Amy", "John", "Nele", "BOB"}}
+	greetings := greeter.Greet()
+
+	if greetings != "Hello, Amy, John and Nele. AND HELLO BOB!" {
+		t.Errorf("Greeting was incorrect, got: %s, want %s", greetings, "Hello, Amy, John and Nele. AND HELLO BOB!")
+	}
+
+	greeter.Names = []string{"Amy", "John", "Nele", "BOB", "Joe"}
+	greetings = greeter.Greet()
+
+	if greetings != "Hello, Amy, John, Nele and Joe. AND HELLO BOB!" {
+		t.Errorf("Greeting was incorrect, got: %s, want %s", greetings, "Hello, Amy, John, Nele and Joe. AND HELLO BOB!")
+	}
+
+	greeter.Names = []string{"BRUCE", "Amy", "John", "Nele", "BOB", "Joe"}
+	greetings = greeter.Greet()
+
+	if greetings != "Hello, Amy, John, Nele and Joe. AND HELLO BRUCE! AND HELLO BOB!" {
+		t.Errorf("Greeting was incorrect, got: %s, want %s", greetings, "Hello, Amy, John, Nele and Joe. AND HELLO BRUCE! AND HELLO BOB!")
+	}
+}
